@@ -13,6 +13,8 @@ to open the project on your computer:
 
     - go into the src dir
 
+    - run: python manage.py makemigration
+
     - run: python manage.py migrate
 
     - run the server with: python manage.py runserver
