@@ -1,0 +1,17 @@
+{% extends "inventory/base.html" %}
+
+{% block content %}
+<h1>ingredients List</h1>
+<table>
+    <tr>
+        <th>Name</th>
+    </tr>
+    <tr>
+    {% for ingredient in object_list %}
+    </tr>
+    <tr>
+        <td>{{ ingredient.name }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
