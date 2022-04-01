@@ -1,0 +1,18 @@
+{% extends "inventory/base.html" %}
+
+{% block content %}
+<h1>List des items du menu</h1>
+<table>
+    <tr>
+        <th>Titre</th>
+        <th>Prix</th>
+    </tr>
+    {% for menuitem in menuitems %}
+    <tr>
+        <td>{{ menuitem.title }}</td>
+        <td>{{ menuitem.price }}€</td>
+        <td><a href="{% url 'menuitemdelete' menuitem.id %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

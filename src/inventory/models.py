@@ -33,4 +33,5 @@ class Purchase(models.Model):
     def __str__(self):
         return self.menu_item.title + " - " + self.timestamp.strftime("%d/%m/%Y - %H:%M:%S")
 
+
     
