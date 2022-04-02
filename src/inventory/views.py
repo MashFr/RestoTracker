@@ -2,11 +2,12 @@ from ast import Delete
 from audioop import reverse
 import imp
 from msilib.schema import ListView
+from pyexpat import model
 from re import template
 from typing import List
 from django.shortcuts import render
 from .models import Ingredients, MenuItem, Purchase, RecipeRequirement
-from django.views.generic import ListView, DeleteView, UpdateView
+from django.views.generic import ListView, DeleteView, CreateView
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -26,6 +27,10 @@ class IngredientDelete(DeleteView):
     template_name = "inventory/ingredient_delete_form.html"
     success_url = reverse_lazy('ingredientlist')
     context_object_name = 'ingredient_to_delete'
+
+class IngredientCreateForm(CreateView):
+    model = Ingredients
+    
 
 #Menu Item View
 
@@ -49,17 +54,11 @@ class PurchasesList(ListView):
 
 #Profit and revenu report
 
-# class Profit(ListView):
-#     model = Purchase
-#     template_name = "inventory/profit.html"
-#     context_object_name = 'purchases'
-
 def Profit(request):
 
     every_purchase = Purchase.objects.all()
     total_revenue = 0
     for purchase in every_purchase:
-        # print(purchase.menu_item.price)
         total_revenue  += purchase.menu_item.price
     
 
@@ -71,7 +70,6 @@ def Profit(request):
             requirement_price = requirement.quantity * requirement.ingredient.unit_price
             print(requirement_price)
             total_cost += requirement_price
-            # print(requirement)
 
     profit = total_revenue - total_cost
 

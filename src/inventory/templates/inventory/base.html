@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,15 +11,21 @@
 </head>
 <body>
     <header>
+        <a class="logo" href="{% url 'home' %}">RestoTrack</a>
         <nav>
-            <a href="{% url 'home' %}">Acceuil</a>
-            <a href="{% url 'ingredientlist' %}">Liste d'ingrédients</a>
-            <a href="{% url 'menuitemlist' %}">Liste du menu</a>
-            <a href="{% url 'purchaselist' %}">Liste des commandes</a>
-            <a href="{% url 'profit' %}">Profit et bénéfices</a>
+            <ul class="nav_links">
+                <li><a href="{% url 'ingredientlist' %}">Ingrédients</a></li>
+                <li><a href="{% url 'menuitemlist' %}">Menu</a></li>
+                <li><a href="{% url 'purchaselist' %}">Commandes</a></li>
+                <li><a href="{% url 'profit' %}">Profit</a></li>
+            </ul>
         </nav>
+        <a class="register"><button>Login</button></a>
     </header>
-    {% block content %}
-    {% endblock %}
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    
 </body>
 </html>
