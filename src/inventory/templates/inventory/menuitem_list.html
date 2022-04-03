@@ -8,16 +8,18 @@
 
 {% block content %}
 <h1>Liste du menu</h1>
+<a href="{% url 'menuitemcreate' %}"><button>Ajouter un plat</button></a>
 <table>
     <tr>
         <th>Titre</th>
         <th>Prix</th>
+        <th></th>
     </tr>
     {% for menuitem in menuitems %}
     <tr>
         <td>{{ menuitem.title }}</td>
         <td>{{ menuitem.price }}€</td>
-        <td><a href="{% url 'menuitemdelete' menuitem.id %}">Delete</a></td>
+        <td><a href="{% url 'menuitemdelete' menuitem.id %}"><button>Delete</button></a></td>
     </tr>
     {% endfor %}
 </table>

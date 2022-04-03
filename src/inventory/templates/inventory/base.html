@@ -14,13 +14,13 @@
         <a class="logo" href="{% url 'home' %}">RestoTrack</a>
         <nav>
             <ul class="nav_links">
-                <li><a href="{% url 'ingredientlist' %}">Ingrédients</a></li>
-                <li><a href="{% url 'menuitemlist' %}">Menu</a></li>
-                <li><a href="{% url 'purchaselist' %}">Commandes</a></li>
-                <li><a href="{% url 'profit' %}">Profit</a></li>
+                <li><a class="nav" href="{% url 'ingredientlist' %}">Ingrédients</a></li>
+                <li><a class="nav" href="{% url 'menuitemlist' %}">Menu</a></li>
+                <li><a class="nav" href="{% url 'purchaselist' %}">Commandes</a></li>
+                <li><a class="nav" href="{% url 'profit' %}">Profit</a></li>
             </ul>
         </nav>
-        <a class="register"><button>Login</button></a>
+        <a class="register" ><button class="nav">Login</button></a>
     </header>
     <main>
         {% block content %}

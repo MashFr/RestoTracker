@@ -1,5 +1,6 @@
 from ast import Delete
 from audioop import reverse
+from dataclasses import field
 import imp
 from msilib.schema import ListView
 from pyexpat import model
@@ -9,6 +10,7 @@ from django.shortcuts import render
 from .models import Ingredients, MenuItem, Purchase, RecipeRequirement
 from django.views.generic import ListView, DeleteView, CreateView
 from django.urls import reverse_lazy
+from .forms import IngredientCreateForm, MenuItemCreateForm
 
 # Create your views here.
 
@@ -28,9 +30,11 @@ class IngredientDelete(DeleteView):
     success_url = reverse_lazy('ingredientlist')
     context_object_name = 'ingredient_to_delete'
 
-class IngredientCreateForm(CreateView):
+class IngredientCreate(CreateView):
     model = Ingredients
-    
+    template_name = "inventory/ingredient_create_form.html"
+    form_class = IngredientCreateForm
+    success_url = reverse_lazy('ingredientlist')
 
 #Menu Item View
 
@@ -40,6 +44,18 @@ class MenuItemList(ListView):
     context_object_name = 'menuitems'
 
 class MenuItemDelete(DeleteView):
+    model = MenuItem
+    template_name = "inventory/menuitem_delete_form.html"
+    success_url = reverse_lazy('menuitemlist')
+    context_object_name = 'menuitem_to_delete'
+
+class MenuItemCreate(CreateView):
+    model = MenuItem
+    template_name = "inventory/menuitem_create_form.html"
+    form_class = MenuItemCreateForm
+    success_url = reverse_lazy('menuitemlist')
+
+class MenuItemCreateRecipe(CreateView):
     model = MenuItem
     template_name = "inventory/menuitem_delete_form.html"
     success_url = reverse_lazy('menuitemlist')
