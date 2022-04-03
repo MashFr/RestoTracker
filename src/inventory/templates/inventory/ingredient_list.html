@@ -8,12 +8,15 @@
 
 {% block content %}
 <h1>Liste des ingredients</h1>
-<a href="{% url 'ingredientcreate' %}"><button>Ajouter un ingrédient</button></a>
+<div class="button-container">
+    <a href="{% url 'ingredientcreate' %}"><button>Ajouter un ingrédient</button></a>
+</div>
 <table>
     <tr>
         <th>Noms</th>
         <th>Quantité</th>
         <th>Prix/unité</th>
+        <th></th>
         <th></th>
     </tr>
     {% for ingredient in ingredients %}
@@ -22,6 +25,7 @@
         <td>{{ ingredient.quantity }} {{ ingredient.unit }}</td>
         <td>{{ ingredient.unit_price }}€ / {{ ingredient.unit }}</td>
         <td><a href="{% url 'ingredientdelete' ingredient.id %}"><button>Delete</button></a></td>
+        <td><a href="{% url 'ingredientupdate' ingredient.id %}"><button>Update</button></a></td>
     </tr>
     {% endfor %}
 </table>

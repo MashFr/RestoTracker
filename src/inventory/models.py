@@ -28,7 +28,7 @@ class RecipeRequirement(models.Model):
 
 class Purchase(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.SET_NULL, null=True)
-    timestamp = models.DateTimeField()
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.menu_item.title + " - " + self.timestamp.strftime("%d/%m/%Y - %H:%M:%S")

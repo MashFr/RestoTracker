@@ -1,0 +1,51 @@
+{% extends "inventory/base.html" %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'inventory/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Liste du menu</h1>
+<div class="button-container">
+    <a href="{% url 'menuitemcreate' %}"><button>Ajouter un plat</button></a>
+    <a href="{% url 'reciperequirementcreate' %}"><button>Ajouter un ingredient à une recette</button></a>
+</div>
+<table>
+    <tr>
+        <th>Titre</th>
+        <th>Prix</th>
+        <th>Recette</th>
+        <th>modifier la recette</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for menuitem in menuitems %}
+    <tr>
+        <td>{{ menuitem.title }}</td>
+        <td>{{ menuitem.price }}€</td>
+        <td>
+        {% for requirement in requirements %}
+            {% if requirement.menu_item == menuitem%}
+                <li>
+                {{ requirement.ingredient }} - {{ requirement.quantity }} {{ requirement.ingredient.unit }}
+                </li>
+            {% endif %}
+        {% endfor %}
+        </td>
+        <td>
+        {% for requirement in requirements %}
+            {% if requirement.menu_item == menuitem%}
+                <li>
+                    <a href="{% url 'reciperequirementupdate' requirement.id %}">Update</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        </td>
+        <td><a href="{% url 'menuitemdelete' menuitem.id %}"><button>Delete Menu</button></a></td>
+        <td><a href="{% url 'menuitemupdate' menuitem.id %}"><button>Update Menu</button></a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

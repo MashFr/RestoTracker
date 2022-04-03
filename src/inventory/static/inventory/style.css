@@ -155,5 +155,17 @@ main {
     padding: 30px 10%;
 }
 
+.button-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.button-container a{
+    margin-right: 20px;
+}
 
 

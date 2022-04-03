@@ -1,0 +1,15 @@
+{% extends "inventory/base.html" %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'inventory/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update">
+</form>
+<a href="{% url 'ingredientlist' %}">Annuler</a>
+{% endblock %}
