@@ -168,25 +168,18 @@ main {
     margin-right: 20px;
 }
 
-.block {
-    margin-top: 50px;
+.welcome {
+    margin: 40px 0px;
 }
 
-.block-right {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.right-block {
+    float: left;
+    padding-right: 60px;
+    height: 400px;
 }
 
-.block-img {
-    max-width: 350px;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-.block-body {
-    margin-left: 20px;
+.right-block img{
+    border-radius: 6px;
+    max-height: 100%;
+    width: auto;
 }
