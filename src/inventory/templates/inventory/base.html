@@ -13,14 +13,28 @@
     <header>
         <a class="logo" href="{% url 'home' %}">RestoTrack</a>
         <nav>
+            {% if user.username %}
             <ul class="nav_links">
                 <li><a class="nav" href="{% url 'ingredientlist' %}">Ingrédients</a></li>
                 <li><a class="nav" href="{% url 'menuitemlist' %}">Menu</a></li>
                 <li><a class="nav" href="{% url 'purchaselist' %}">Commandes</a></li>
                 <li><a class="nav" href="{% url 'profit' %}">Profit</a></li>
             </ul>
+            {% endif %}
+            {% if not user.username %} 
+            <ul class="nav_links">
+                <li><a class="nav" href="{% url 'carte' %}">Carte</a></li>
+                <li><a class="nav" href="">Reserver</a></li>
+                <li><a class="nav" href="">Contact</a></li>
+            </ul>
+            {% endif %}
         </nav>
-        <a class="register" ><button class="nav">Login</button></a>
+        {% if not user.username %} 
+            <a class="register" href="{% url 'login' %}"><button class="nav">Login</button></a>
+        {% endif %}
+        {% if user.username %}
+            <a class="register" href="{% url 'logout' %}"><button class="nav">Logout</button></a>
+        {% endif %}
     </header>
     <main>
         {% block content %}

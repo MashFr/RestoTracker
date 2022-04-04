@@ -1,0 +1,16 @@
+{% extends "inventory/base.html" %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'inventory/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Carte</h1>
+<ul>
+{% for menuitem in menuitems %}
+    <li>{{ menuitem }} / {{ menuitem.price }}€</li>
+{% endfor %}
+</ul>
+{% endblock %}

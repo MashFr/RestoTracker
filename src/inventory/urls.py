@@ -1,9 +1,15 @@
 from unicodedata import name
-from django.urls import path
+from xml.etree.ElementInclude import include
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
     path('', views.home, name="home"),
+    path('carte/', views.carte, name="carte"),
+
+    path('account/', include("django.contrib.auth.urls")),
+    path('singup/', views.SignUp.as_view(), name="signup"),
+    path('logout/', views.logout_request, name="logout"),
 
     path('ingredient/', views.IngredientList.as_view(), name="ingredientlist"),
     path('ingredient/delete/<pk>', views.IngredientDelete.as_view(), name="ingredientdelete"),
