@@ -17,7 +17,8 @@
         <th>Titre</th>
         <th>Prix</th>
         <th>Recette</th>
-        <th>modifier la recette</th>
+        <th>Modifier la recette</th>
+        <th>Supprimer la recette</th>
         <th></th>
         <th></th>
     </tr>
@@ -27,7 +28,7 @@
         <td>{{ menuitem.price }}€</td>
         <td>
         {% for requirement in requirements %}
-            {% if requirement.menu_item == menuitem%}
+            {% if requirement.menu_item == menuitem %}
                 <li>
                 {{ requirement.ingredient }} - {{ requirement.quantity }} {{ requirement.ingredient.unit }}
                 </li>
@@ -36,9 +37,18 @@
         </td>
         <td>
         {% for requirement in requirements %}
-            {% if requirement.menu_item == menuitem%}
+            {% if requirement.menu_item == menuitem %}
                 <li>
-                    <a href="{% url 'reciperequirementupdate' requirement.id %}">Update</a>
+                    <a href="{% url 'reciperequirementupdate' requirement.id %}">Modifier</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        </td>
+        <td>
+        {% for requirement in requirements %}
+            {% if requirement.menu_item == menuitem %}
+                <li>
+                    <a href="{% url 'recipedelete' requirement.id %}">Supprimer</a>
                 </li>
             {% endif %}
         {% endfor %}

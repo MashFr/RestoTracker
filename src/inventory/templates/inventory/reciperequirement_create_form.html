@@ -8,7 +8,15 @@
 
 {% block content %}
 <form method="POST">{% csrf_token %}
-    {{ form.as_p }}
+    {{ form.menu_item.errors }}
+    <label for="{{ form.menu_item.id_for_label }}">Plat:</label>
+    {{ form.menu_item }}
+    {{ form.ingredient.errors }}
+    <label for="{{ form.ingredient.id_for_label }}">Ingrédient:</label>
+    {{ form.ingredient }}
+    {{ form.quantity.errors }}
+    <label for="{{ form.quantity.id_for_label }}">Quantité: {{ ingredient.unit }}</label>
+    {{ form.quantity }}
     <input type="submit" value="submit">
 </form>
 <a href="{% url 'menuitemlist' %}">Annuler</a>

@@ -27,4 +27,3 @@ class PurchaseCreateForm(forms.ModelForm):
         model = Purchase
         exclude = ['timestamp']
         # fields = ("menu_item", '')
-

@@ -100,6 +100,11 @@ class RecipeRequirementUpdate(LoginRequiredMixin, UpdateView):
     form_class = RecipeRequirementUpdateForm
     success_url = reverse_lazy('menuitemlist')
 
+class RecipeRequirementDelete(LoginRequiredMixin, DeleteView):
+    model = RecipeRequirement
+    template_name = "inventory/reciperequirement_delete_form.html"
+    success_url = reverse_lazy('menuitemlist')
+    context_object_name = 'recipe_to_delete'
 
 #Purchase View
 

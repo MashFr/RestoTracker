@@ -1,0 +1,16 @@
+{% extends "inventory/base.html" %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'inventory/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    <p class="form-text">Etes vous sur de vouloir suprimer : "{{ recipe_to_delete }}" ?</p>
+    {{ form }}
+    <input type="submit" value="Confirmer">
+</form>
+<a href="{% url 'menuitemlist' %}">Annuler</a>
+{% endblock %}

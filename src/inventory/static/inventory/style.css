@@ -12,7 +12,7 @@ body {
     background-color: #F5F5F5;
 }
 
-h1, h2, h3, h4, li, a, button, p, td, th {
+h1, h2, h3, h4, li, a, button, p, td, th, label {
     font-family: 'Raleway', sans-serif;
     font-weight: 500;
 }
