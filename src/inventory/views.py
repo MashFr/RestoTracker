@@ -7,6 +7,7 @@ from multiprocessing import context
 from pyexpat import model
 from re import template
 from typing import List
+from urllib import request
 from django.shortcuts import render, redirect
 from .models import Ingredients, MenuItem, Purchase, RecipeRequirement
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
@@ -59,8 +60,14 @@ def MenuItemView(request):
 
     every_menue_item = MenuItem.objects.all()
     every_menue_requirement = RecipeRequirement.objects.all()
+    costs = {}
+    for menue in every_menue_item:
+        total_cost = 0
+        for requirement in every_menue_requirement.filter(menu_item = menue):
+            total_cost += requirement.ingredient.unit_price * requirement.quantity
+        costs[menue.title] = round(total_cost, 2)
 
-    context = {"menuitems": every_menue_item, "requirements": every_menue_requirement}
+    context = {"menuitems": every_menue_item, "requirements": every_menue_requirement, "costs": costs}
     return render(request, "inventory/menuitem.html", context)
 
 # class MenuItemList(ListView):

@@ -16,6 +16,7 @@
     <tr>
         <th>Titre</th>
         <th>Prix</th>
+        <th>Cout</th>
         <th>Recette</th>
         <th>Modifier la recette</th>
         <th>Supprimer la recette</th>
@@ -26,6 +27,13 @@
     <tr>
         <td>{{ menuitem.title }}</td>
         <td>{{ menuitem.price }}€</td>
+        <td>
+        {% for key, value in costs.items %}
+            {% if key == menuitem.title %}
+                {{value}} €
+            {% endif %}
+        {% endfor %}
+        </td>
         <td>
         {% for requirement in requirements %}
             {% if requirement.menu_item == menuitem %}
