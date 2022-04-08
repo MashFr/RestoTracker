@@ -61,8 +61,8 @@
             {% endif %}
         {% endfor %}
         </td>
-        <td><a href="{% url 'menuitemdelete' menuitem.id %}"><button>Delete Menu</button></a></td>
-        <td><a href="{% url 'menuitemupdate' menuitem.id %}"><button>Update Menu</button></a></td>
+        <td><a href="{% url 'menuitemdelete' menuitem.id %}"><button>Supprimer Menu</button></a></td>
+        <td><a href="{% url 'menuitemupdate' menuitem.id %}"><button>Mettre à jour Menu</button></a></td>
     </tr>
     {% endfor %}
 </table>

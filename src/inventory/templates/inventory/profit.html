@@ -9,10 +9,39 @@
 {% block content %}
 <h1>Profit et bénéfice</h1>
 
-<h2>Revenus:</h2>
-<p>{{revenue}}</p>
-<h2>Profit:</h2>
-<p>{{profit}}</p>
+<section class="card-section">
+    <div class="card">
+        <div class="card-container">
+            <h2>Revenus:</h2>
+            <p>{{revenue}} €</p>
+        </div>
+        <div class="card-container">
+            <h2>Profit:</h2>
+            <p><i>Deduction du prix des matières premières</i></p>
+            <p>{{profit}} €</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-container">
+            <h2>Plat le plus vendu:</h2>
+            <p>{{ most_sell_item_name }}</p>
+        </div>
+        <div class="card-container">
+            <h3>nombre:</h4>
+            <p>{{ most_sell_item_count }}</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-container">
+            <h2>Plat qui rapporte le plus:</h2>
+            <p>{{ most_pay_item_menu_title }}</p>
+        </div>
+        <div class="card-container">
+            <h3>Revenus total:</h4>
+            <p>{{ most_pay_item_menu_price }} €</p>
+        </div>
+    </div>
+</section>
 
 
 {% endblock %}

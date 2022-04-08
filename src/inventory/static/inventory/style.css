@@ -183,3 +183,21 @@ main {
     max-height: 100%;
     width: auto;
 }
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    padding: 5px 16px;
+    margin: 25px 25px;
+}
+
+.card-container {
+    margin: 5px 0;
+}
+
+.card-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}

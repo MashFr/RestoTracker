@@ -131,6 +131,7 @@ class PurchasesCreate(LoginRequiredMixin, CreateView):
 @login_required
 def Profit(request):
 
+    # revenue
     every_purchase = Purchase.objects.all()
     total_revenue = 0
     for purchase in every_purchase:
@@ -138,7 +139,7 @@ def Profit(request):
             continue
         total_revenue  += purchase.menu_item.price
     
-
+    # profit
     total_cost = 0
     for purchase in every_purchase:
         if purchase.menu_item == None :
@@ -147,12 +148,49 @@ def Profit(request):
         
         for requirement in recipe_requirement:
             requirement_price = requirement.quantity * requirement.ingredient.unit_price
-            print(requirement_price)
+            # print(requirement_price)
             total_cost += requirement_price
 
     profit = total_revenue - total_cost
 
-    context = {"revenue": total_revenue, "profit": profit}
+    # plat le plus vendu
+    every_menue_item = MenuItem.objects.all()
+
+    menu_sell = []
+    for purchase in every_purchase:
+        menu_sell.append(purchase.menu_item.title)
+
+    most_sell_item_count = 0
+    most_sell_item_name = ""
+
+    for menu_item in every_menue_item:
+        actual_most_sell_item_count = menu_sell.count(menu_item.title)
+        if actual_most_sell_item_count > most_sell_item_count:
+            most_sell_item_count = actual_most_sell_item_count
+            most_sell_item_name = menu_item.title
+    
+    # plat qui rapporte le plus
+    price_per_menu_item = {}
+    for menu_item in every_menue_item:
+        temp_count_menu_item_price = 0
+        for purchase in every_purchase:
+            if menu_item.title == purchase.menu_item.title:
+                temp_count_menu_item_price += purchase.menu_item.price
+        price_per_menu_item[menu_item.title] = temp_count_menu_item_price
+    print(price_per_menu_item)
+
+    most_pay_item_menu_title = ""
+    most_pay_item_menu_price = 0
+    for key, value in price_per_menu_item.items():
+        temp_value = 0
+        temp_key = ""
+        if value > temp_value:
+            temp_value += value
+            temp_key += key
+        most_pay_item_menu_title = temp_key
+        most_pay_item_menu_price = temp_value
+
+    context = {"revenue": total_revenue, "profit": profit, "most_sell_item_name": most_sell_item_name, "most_sell_item_count": most_sell_item_count, "most_pay_item_menu_title": most_pay_item_menu_title, "most_pay_item_menu_price": most_pay_item_menu_price}
     return render(request, "inventory/profit.html", context)
 
 #Login
